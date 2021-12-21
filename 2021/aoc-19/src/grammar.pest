@@ -1,0 +1,7 @@
+scanner_number = { ASCII_DIGIT+ }
+scanner_header = _{ "--- scanner " ~ scanner_number ~ " ---" ~ NEWLINE }
+coord_elem = @{ "-"? ~ ASCII_DIGIT+ }
+coord = { coord_elem ~ "," ~ coord_elem ~ "," ~ coord_elem }
+coord_list = { coord ~ ( NEWLINE ~ coord )* }
+scanner = { scanner_header ~ coord_list }
+scanners = { scanner ~ ( NEWLINE ~ NEWLINE ~ scanner)* }
