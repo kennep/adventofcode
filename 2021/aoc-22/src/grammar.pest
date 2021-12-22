@@ -1,0 +1,7 @@
+// off x=-48..-32,y=26..41,z=-47..-37
+coord = @{ "-"? ~ ASCII_DIGIT+ }
+axis = { ("x" | "y" | "z") }
+instruction = { "on" | "off" }
+range = { axis ~ "=" ~ coord ~ ".." ~ coord }
+step = { instruction ~ " " ~ range ~ "," ~ range ~ "," ~ range }
+steps = { step ~ ( NEWLINE ~ step)* }
