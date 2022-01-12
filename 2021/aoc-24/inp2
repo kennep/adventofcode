@@ -1,0 +1,48 @@
+inp w
+mul x 0   0    0   0   0   0   0   0   0   0   0   0   0   0
+add x z   z    z   z   z   z   z   z   z   z   z   z   z   z
+mod x 26  26  26  26  26  26  26  26  26  26  26  26  26  26
+div z 1   1    1   1  26   1   1  26   1  26  26  26  26  26
+add x 14  13  15  13  -2  10  13 -15  11  -9  -9  -7  -4  -6
+eql x w   w    w   w   w   w   w   w   w   w   w   w   w   w
+eql x 0   0    0   0   0   0   0   0   0   0   0   0   0   0
+mul y 0   0    0   0   0   0   0   0   0   0   0   0   0   0
+add y 25  25  25  25  25  25  25  25  25  25  25  25  25  25
+mul y x   x    x   x   x   x   x   x   x   x   x   x   x   x
+add y 1   1    1   1   1   1   1   1   1   1   1   1   1   1
+mul z y   y    y   y   y   y   y   y   y   y   y   y   y   y
+mul y 0   0    0   0   0   0   0   0   0   0   0   0   0   0
+add y w   w    w   w   w   w   w   w   w   w   w   w   w   w
+add y 0   12  14   0   3  15  11  12   1  12   3  10  14  12
+mul y x   x    x   x   x   x   x   x   x   x   x   x   x   x
+add z y   y    y   y   y   y   y   y   y   y   y   y   y   y
+5   #  #
+4 # #           #
+3  # #  #
+2  #             #
+1       # #
+0      #     #
+9
+8
+7
+6
+5
+4
+3     #     #
+2        # #
+1         #
+0 #  #
+1
+2     #
+3
+4             #
+5
+6              #
+7            #
+8
+9          ##
+1
+2
+3
+4
+5        #
