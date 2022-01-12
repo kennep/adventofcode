@@ -1,5 +1,4 @@
 use std::io::{stdin,Read};
-use std::fmt;
 use std::cmp::{min, max};
 use pest::Parser;
 use pest::iterators::Pair;
@@ -22,13 +21,6 @@ struct CoordRange {
 }
 
 impl CoordRange {
-    fn intersects(&self, other: &CoordRange) -> bool {
-        match self.intersection(other) {
-            Some(_) => true,
-            None => false
-        }
-    }
-
     fn intersection(&self, other: &CoordRange) -> Option<CoordRange> {
         let overlap_start = max(self.min, other.min);
         let overlap_end = min(self.max, other.max);
@@ -60,13 +52,6 @@ struct Cuboid {
 }
 
 impl Cuboid {
-    fn intersects(&self, other: &Cuboid) -> bool{
-        match self.intersection(other) {
-            Some(_) => true,
-            None => false
-        } 
-    }
-
     fn intersection(&self, other: &Cuboid) -> Option<Cuboid> {
         let x_intersection = self.x.intersection(&other.x);
         let y_intersection = self.y.intersection(&other.y);
@@ -175,7 +160,6 @@ fn main() {
     stdin().read_to_string(&mut input).expect("Read failed");
 
     let mut steps = parse(input);
-    println!("{:?}", steps);
 
     let mut cubes = vec![vec![vec![false; 101]; 101]; 101];
     for step in steps.iter() {
@@ -212,26 +196,23 @@ fn main() {
     let first = steps.remove(0);
     cubes.push(first.cuboid);
     while steps.len() > 0 {
-        println!("Cubes: {} Steps remaining: {}", cubes.len(), steps.len());
+        print!("Cubes: {} Steps remaining: {}   \r", cubes.len(), steps.len());
         let step = steps.remove(0);
         if step.instruction == Instruction::On {
             let mut add_ok = true;
             for i in 0..cubes.len() {
                 let cube = cubes[i];
                 if cube == step.cuboid {
-                    println!("Already on");
                     add_ok = false;
                     break;
                 }
                 if let Some(intersection) = cube.intersection(&step.cuboid) {
-                    println!("On: Cube {:?} intersects with {:?}: {:?}", cube, step.cuboid, intersection);
                     for splitcube in step.cuboid.diffsplit(&intersection) {
                         steps.insert(0, Step{
                             instruction: Instruction::On,
                             cuboid: splitcube
                         });
                     }
-                    println!("On - intersection");
                     add_ok = false;
                     break;
                 }
@@ -244,7 +225,6 @@ fn main() {
                 let cube = cubes[i];
                 if cube == step.cuboid {
                     cubes.remove(i);
-                    println!("Removing cube {} due to off instruction", i);
                     break;
                 }
                 if let Some(intersection) = cube.intersection(&step.cuboid) {
@@ -258,7 +238,6 @@ fn main() {
                             cuboid: splitcube
                         });
                     }
-                    println!("Off - intersection");
                     break;
                 }
             }
