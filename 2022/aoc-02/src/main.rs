@@ -1,10 +1,13 @@
-use std::{io::{stdin, BufRead}, str::FromStr};
+use std::{
+    io::{stdin, BufRead},
+    str::FromStr,
+};
 
-#[derive(Debug,Clone,Copy)]
+#[derive(Debug, Clone, Copy)]
 enum Move {
     Rock,
     Paper,
-    Scissors
+    Scissors,
 }
 
 impl FromStr for Move {
@@ -18,7 +21,7 @@ impl FromStr for Move {
             "X" => Ok(Move::Rock),
             "Y" => Ok(Move::Paper),
             "Z" => Ok(Move::Scissors),
-            _ => Err(MoveFormatError(s.to_owned()))
+            _ => Err(MoveFormatError(s.to_owned())),
         }
     }
 }
@@ -27,7 +30,7 @@ impl FromStr for Move {
 enum DesiredResult {
     Win,
     Loose,
-    Draw
+    Draw,
 }
 
 impl FromStr for DesiredResult {
@@ -38,11 +41,10 @@ impl FromStr for DesiredResult {
             "X" => Ok(DesiredResult::Loose),
             "Y" => Ok(DesiredResult::Draw),
             "Z" => Ok(DesiredResult::Win),
-            _ => Err(MoveFormatError(s.to_owned()))
+            _ => Err(MoveFormatError(s.to_owned())),
         }
     }
 }
-
 
 #[derive(Debug)]
 struct MoveFormatError(String);
@@ -50,10 +52,8 @@ struct MoveFormatError(String);
 #[derive(Debug)]
 struct RoundA(Move, Move);
 
-impl RoundA
-{
-    fn points(&self) -> i32
-    {
+impl RoundA {
+    fn points(&self) -> i32 {
         let win_points = match self {
             RoundA(Move::Rock, Move::Rock) => 3,
             RoundA(Move::Rock, Move::Paper) => 6,
@@ -72,22 +72,18 @@ impl RoundA
         };
 
         win_points + move_points
-    }   
+    }
 }
-
 
 #[derive(Debug)]
 struct RoundB(Move, DesiredResult);
 
-impl RoundB
-{
-    fn points(&self) -> i32
-    {
+impl RoundB {
+    fn points(&self) -> i32 {
         RoundA(self.0, self.select_my_move()).points()
-    }       
+    }
 
-    fn select_my_move(&self) -> Move
-    {
+    fn select_my_move(&self) -> Move {
         match self {
             RoundB(Move::Rock, DesiredResult::Win) => Move::Paper,
             RoundB(Move::Rock, DesiredResult::Loose) => Move::Scissors,
@@ -103,13 +99,20 @@ impl RoundB
 }
 
 fn main() {
-    let lines: Vec<_> = stdin().lock().lines()
+    let lines: Vec<_> = stdin()
+        .lock()
+        .lines()
         .map(|l| l.unwrap())
         .filter(|l| !l.is_empty())
         .collect();
 
-    let rounds_a = lines.iter()
-        .map(|l| l.split_whitespace().map(|s| s.to_string()).collect::<Vec<_>>())
+    let rounds_a = lines
+        .iter()
+        .map(|l| {
+            l.split_whitespace()
+                .map(|s| s.to_string())
+                .collect::<Vec<_>>()
+        })
         .map(|s| RoundA(s[0].parse::<Move>().unwrap(), s[1].parse::<Move>().unwrap()))
         .collect::<Vec<_>>();
 
@@ -119,10 +122,20 @@ fn main() {
     println!("(A) Points: {:?}", points_a);
     println!("(A) Sum of points: {}", points_a.iter().sum::<i32>());
 
-    let rounds_b = lines.iter()
-    .map(|l| l.split_whitespace().map(|s| s.to_string()).collect::<Vec<_>>())
-    .map(|s| RoundB(s[0].parse::<Move>().unwrap(), s[1].parse::<DesiredResult>().unwrap()))
-    .collect::<Vec<_>>();
+    let rounds_b = lines
+        .iter()
+        .map(|l| {
+            l.split_whitespace()
+                .map(|s| s.to_string())
+                .collect::<Vec<_>>()
+        })
+        .map(|s| {
+            RoundB(
+                s[0].parse::<Move>().unwrap(),
+                s[1].parse::<DesiredResult>().unwrap(),
+            )
+        })
+        .collect::<Vec<_>>();
 
     println!("(B) Rounds: {:?}", rounds_b);
 
