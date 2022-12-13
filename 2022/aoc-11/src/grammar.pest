@@ -1,0 +1,18 @@
+WHITESPACE = _{ " " }
+numeric_literal = { ASCII_DIGIT+ }
+monkey_header = { "Monkey" ~ numeric_literal ~ ":" ~ NEWLINE }
+item = _{ numeric_literal }
+item_list = _ { item ~ ("," ~ item)* }
+monkey_items = {  "Starting items:" ~ item_list ~ NEWLINE }
+variable = { "old" }
+operator = { "*" | "+" }
+term = _ { numeric_literal | variable }
+expression = { term ~ (operator ~ term)? }
+monkey_operation = { "Operation:" ~ "new" ~ "=" ~ expression ~ NEWLINE }
+test_condition = { "Test:" ~ "divisible by" ~ numeric_literal ~ NEWLINE }
+action = _{ "throw to monkey" ~ numeric_literal }
+true_branch = { "If true:" ~ action ~ NEWLINE }
+false_branch = { "If false:" ~ action ~ NEWLINE }
+monkey_test = { test_condition ~ true_branch ~ false_branch }
+monkey = { monkey_header ~ monkey_items ~ monkey_operation ~ monkey_test }
+monkeys = _{ monkey ~ ( NEWLINE ~ monkey )* }
