@@ -1,0 +1,36 @@
+{
+  "version": "0.2.1",
+  "defaults": {},
+  "configurations": [
+    {
+      "type": "default",
+      "project": "CMakeLists.txt",
+      "projectTarget": "aoc-01.exe (2023\\aoc-01\\aoc-01.exe)",
+      "name": "aoc-01.exe (2023\\aoc-01\\aoc-01.exe)",
+      "currentDir": "2023\\aoc-01",
+      "args": [
+        "example2.txt"
+      ]
+    },
+    {
+      "type": "default",
+      "project": "CMakeLists.txt",
+      "projectTarget": "aoc-02.exe (2023\\aoc-02\\aoc-02.exe)",
+      "name": "aoc-02.exe (2023\\aoc-02\\aoc-02.exe)",
+      "currentDir": "2023\\aoc-02",
+      "args": [
+        "example.txt"
+      ]
+    },
+    {
+      "type": "default",
+      "project": "CMakeLists.txt",
+      "projectTarget": "aoc-03.exe (2023\\aoc-03\\aoc-03.exe)",
+      "name": "aoc-03.exe (2023\\aoc-03\\aoc-03.exe)",
+      "currentDir": "2023\\aoc-03",
+      "args": [
+        "input.txt"
+      ]
+    }
+  ]
+}
