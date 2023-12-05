@@ -1,0 +1,1 @@
+add_library(AoC STATIC "strings.cpp" "case.h" "case.cpp" "strings.h" "streamhelpers.h" "ranges.h")

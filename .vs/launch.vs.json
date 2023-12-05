@@ -31,6 +31,26 @@
       "args": [
         "input.txt"
       ]
+    },
+    {
+      "type": "default",
+      "project": "CMakeLists.txt",
+      "projectTarget": "aoc-04.exe (2023\\aoc-04\\aoc-04.exe)",
+      "name": "aoc-04.exe (2023\\aoc-04\\aoc-04.exe)",
+      "currentDir": "2023\\aoc-04",
+      "args": [
+        "example.txt"
+      ]
+    },
+    {
+      "type": "default",
+      "project": "CMakeLists.txt",
+      "projectTarget": "aoc-05.exe (2023\\aoc-05\\aoc-05.exe)",
+      "name": "aoc-05.exe (2023\\aoc-05\\aoc-05.exe)",
+      "currentDir": "2023\\aoc-05",
+      "args": [
+        "example.txt"
+      ]
     }
   ]
 }

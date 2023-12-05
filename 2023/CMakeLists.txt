@@ -1,3 +1,6 @@
+add_subdirectory ("lib")
 add_subdirectory ("aoc-01")
 add_subdirectory ("aoc-02")
 add_subdirectory ("aoc-03")
+add_subdirectory ("aoc-04")
+add_subdirectory ("aoc-05")
