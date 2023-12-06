@@ -27,3 +27,9 @@ bool parse_list(const std::string& input, std::vector<T>& dest)
 	}
 	return true;
 }
+
+
+void replace(
+	std::string& input,
+	const std::string& sub_string,
+	const std::string& replacement_string);

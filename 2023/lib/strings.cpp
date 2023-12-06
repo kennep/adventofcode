@@ -40,3 +40,17 @@ vector<string> split(const string& input, const string &delimiter, size_t max_el
 
 	return result;
 }
+
+void replace(
+	std::string& input,
+	const std::string& sub_string,
+	const std::string& replacement_string)
+{
+	size_t start_pos = 0;
+	size_t found_pos;
+	while ((found_pos = input.find(sub_string, start_pos)) != std::string::npos)
+	{
+		input.replace(found_pos, sub_string.length(), replacement_string);
+		start_pos = found_pos + replacement_string.length();
+	}
+}
