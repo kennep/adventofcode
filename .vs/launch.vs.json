@@ -51,6 +51,16 @@
       "args": [
         "example.txt"
       ]
+    },
+    {
+      "type": "default",
+      "project": "CMakeLists.txt",
+      "projectTarget": "aoc-07.exe (2023\\aoc-07\\aoc-07.exe)",
+      "name": "aoc-07.exe (2023\\aoc-07\\aoc-07.exe)",
+      "currentDir": "2023\\aoc-07",
+      "args": [
+        "example.txt"
+      ]
     }
   ]
 }
