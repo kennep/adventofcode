@@ -6,6 +6,7 @@ private:
 	bool open_file(const char* filename, std::ifstream& fd);
 
 	virtual void process_line(const std::string& inputline) = 0;
+	virtual void end_input() {}
 	virtual void solve() = 0;
 
 public:

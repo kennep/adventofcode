@@ -28,6 +28,25 @@ bool parse_list(const std::string& input, std::vector<T>& dest)
 	return true;
 }
 
+// Parse comma-separated data from string
+template<typename T>
+bool parse_csv(const std::string& input, std::vector<T>& dest)
+{
+	auto splits = split(input, ",");
+	for(const auto & s : splits) {
+		auto ss = std::stringstream(s);
+		T value;
+		if (ss >> value) {
+			dest.push_back(value);
+		}
+		else {
+			std::cerr << "Error: element " << (dest.size() + 1) << " in list not an integer " << input << std::endl;
+			return false;
+		}
+	}
+	return true;
+}
+
 
 void replace(
 	std::string& input,

@@ -36,6 +36,7 @@ int Case::run(int argc, char* argv[])
 
 		process_line(inputline);
 	}
+	end_input();
 
 	solve();
 
