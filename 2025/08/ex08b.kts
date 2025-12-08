@@ -34,7 +34,8 @@ var circuits = mutableListOf<List<Point>>()
 
 var iterator = closestPoints.iterator()
 var numConnections = 0
-while(iterator.hasNext() && numConnections < 1000) {
+var lastConnected : PointDistance? = null
+while(iterator.hasNext()) {
     var connection = iterator.next()
 
     var firstConnected = circuits.firstOrNull { c -> c.contains(connection.p1) }
@@ -52,6 +53,7 @@ while(iterator.hasNext() && numConnections < 1000) {
         circuits.remove(secondConnected)
         val merged = firstConnected + secondConnected
         circuits.add(merged)
+        lastConnected = connection
         numConnections++
         continue;
     }
@@ -72,6 +74,7 @@ while(iterator.hasNext() && numConnections < 1000) {
     {
         circuits.add(listOf(connection.p1, connection.p2))
     }
+    lastConnected = connection
 
 }
 println(numConnections)
@@ -82,3 +85,5 @@ var maxSizes = circuitSizes.sortedDescending().take(3)
 println(maxSizes.reduce { acc, i -> acc * i })
 println("-----")
 
+println("Last connected points: $lastConnected")
+println("X coords multiplied: ${lastConnected?.let { it.p1.x.toLong() * it.p2.x.toLong() }}")
